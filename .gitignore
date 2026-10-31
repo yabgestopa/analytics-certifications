@@ -1,0 +1,16 @@
+# Python virtual environment
+.venv/
+
+# dbt build artifacts and logs
+target/
+dbt_packages/
+logs/
+
+# Secrets: NEVER commit these
+*.json
+.env
+profiles.yml
+
+# OS clutter
+.DS_Store
+Thumbs.db
