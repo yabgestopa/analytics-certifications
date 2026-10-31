@@ -60,7 +60,7 @@ Wording copied from the support article.
 |---|---|---|---|
 | Aggregate numeric and categorical variables and dates by groups using PostgreSQL | [ ] | [ ] | [ ] |
 | Interpret a database schema and combine multiple tables by rows or columns using PostgreSQL | [ ] | [ ] | [ ] |
-| Extract data based on different conditions using PostgreSQL | [ ] | [ ] | [ ] |
+| Extract data based on different conditions using PostgreSQL | [x] | [x] | [ ] |
 | Use subqueries to reference a second table (e.g. a different table, an aggregated table) within a query in PostgreSQL | [ ] | [ ] | [ ] |
 
 **2. Perform cleaning tasks to prepare data for analysis**

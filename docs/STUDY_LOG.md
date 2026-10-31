@@ -58,8 +58,64 @@ Newest entries at the bottom. Every chat gets an entry.
 
 ---
 
+## Session 2 — 1 November 2026: My first SQL query (starting from zero)
+
+**What we did**
+- Restarted SQL from zero: one concept per step, no shortcuts.
+- Set up Claude in Chrome so Claude can see my BigQuery tab (I type, Claude looks when I say "check").
+- Lesson 1: what a database, table, column and row are. Looked at the Shakespeare public table
+  (`bigquery-public-data.samples.shakespeare`): 4 columns: `word`, `word_count`, `corpus`, `corpus_date`.
+- Lesson 2: wrote and ran my first query, `SELECT word, corpus FROM ...`. Got 164,656 rows.
+
+**What I learned**
+- **A database is a filing cabinet, and each table is a drawer.** Columns are the kinds of information.
+  Rows are the things. In the Shakespeare table, one row = one word inside one play
+  ("*love* appears 87 times in *Hamlet*"). Always check what one row means first.
+- **`FROM` = which drawer. `SELECT` = which columns to show.** Commas between columns, no comma
+  after the last one. `SELECT *` = every column.
+- **The validator is SQL spell-check.** A green tick means the query makes sense. It also shows how
+  much data the query will read, like a taxi meter.
+- **BigQuery stores data by column (columnar storage)**, like one drawer per column. `word, corpus`
+  read 3.62 MB, but `*` read 6.13 MB, because you pay for every drawer you open. Best practice: name
+  only the columns you need.
+- **Trap:** PostgreSQL (the DataCamp exam) stores by row, so `SELECT *` there is about clarity, not cost.
+  BigQuery puts table names in backticks; PostgreSQL doesn't.
+
+- **Lesson 3: `WHERE` is a sieve.** It keeps only rows that pass a test. It goes after `FROM`.
+  Text goes in single quotes (`'hamlet'`), numbers don't. `WHERE corpus = 'hamlet'` gave 5,318 rows.
+  `WHERE word_count > 100` gave 1,333 rows, mostly "glue words" like *the*, *I*, *of* (called
+  **stop words**). Other tests: `<`, `>=`, `<=`, `!=`/`<>`.
+- **Any column used anywhere counts toward the bill**, not just the ones in `SELECT`. Sieving on
+  `corpus` added its drawer (4.88 MB).
+- **`AND` = strict bouncer (both tests), `OR` = relaxed bouncer (either test).**
+  `WHERE word_count > 100 AND corpus = 'hamlet'` gave 47 rows. Top word: *the* (995 times).
+- **Text matching is case-sensitive:** `HAMLET` (the character's name in speech headings, 407) and
+  `hamlet` are different values. `'Hamlet'` would match nothing in `corpus`.
+- **Lesson 4: `ORDER BY` lines rows up** (default `ASC` = smallest first, `DESC` = biggest first),
+  like children lining up for a photo. Clicking a column header only sorts my screen, not the query.
+- **Clause order is fixed:** `SELECT` → `FROM` → `WHERE` → `ORDER BY` → `LIMIT`.
+- **Lesson 5: `LIMIT` keeps the first N rows.** `ORDER BY` + `LIMIT` = the "top N" podium pattern.
+  `LIMIT` without `ORDER BY` = "some N rows", not "the top N".
+- **BigQuery trap:** `LIMIT` doesn't cut the bytes scanned (still 4.88 MB). Only fewer columns does.
+- **Comments are sticky notes SQL ignores:** `/* ... */` for many lines, `-- ...` for one line.
+
+**Quiz: 4/5**
+- ⚠️ Weak spot: **reading error clues.** I missed that `SELECT word, corpus, FROM` breaks because of
+  the **extra comma after the last column**. A comma means "another column is coming", so SQL
+  tries to read `FROM` as a column name. Look for small punctuation slips first.
+
+**Quiz (Lessons 3–5): 5/5** 🎉
+- Fine print: **keywords** aren't case-sensitive (`select` = `SELECT`), but **text values** are
+  (`'hamlet'` ≠ `'Hamlet'`).
+- Watch for **ties**: many words share the lowest count, so "the 5 least-used" with `LIMIT 5`
+  picks 5 of the tied rows, and which ones it picks can change.
+
+---
+
 ## Coming up next
-1. HackerRank **SQL (Basic)**: a free, quick first certificate.
+0. **Lesson 6: counting and adding up** (`COUNT`, `SUM`, `AVG`, `MIN`, `MAX`). Then `GROUP BY`,
+   `HAVING` and joins, one at a time.
+1. HackerRank **SQL (Basic)**: a free, quick first certificate, once the basics above are done.
 2. Start DataCamp Premium and the **SQL Fundamentals** track (26 hours). Pick a target month
    for the exam, remembering there are only 30 days from registering to finish both parts.
 3. Try DataCamp's readiness quiz and sample practical early, as a baseline.
