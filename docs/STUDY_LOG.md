@@ -20,6 +20,8 @@ Newest entries at the bottom. Every chat gets an entry.
   HackerRank SQL (free) → DataCamp SQL Associate → dbt certification → Snowflake.
 - Renamed the repo to `analytics-certifications` with one folder per track, and turned the
   official DataCamp SQL Associate requirements into a checklist (`1-sql/EXAM_GUIDE.md`).
+- Published it as a **public** repo: https://github.com/yabgestopa/analytics-certifications.
+  Public because it's linked from my CV, and the `.gitignore` keeps secrets out.
 
 **What I learned**
 - **A certificate isn't the same as proficiency.** A certificate is a driving licence: proof
@@ -57,10 +59,9 @@ Newest entries at the bottom. Every chat gets an entry.
 ---
 
 ## Coming up next
-1. Decide public or private, then create the GitHub repo and push (needs my OK).
-2. HackerRank **SQL (Basic)**: a free, quick first certificate.
-3. Start DataCamp Premium and the **SQL Fundamentals** track (26 hours). Pick a target month
+1. HackerRank **SQL (Basic)**: a free, quick first certificate.
+2. Start DataCamp Premium and the **SQL Fundamentals** track (26 hours). Pick a target month
    for the exam, remembering there are only 30 days from registering to finish both parts.
-4. Try DataCamp's readiness quiz and sample practical early, as a baseline.
-5. Alongside: window functions in BigQuery (see the Advanced SQL table in `1-sql/EXAM_GUIDE.md`).
-6. Later: dbt (`2-dbt/`), then Snowflake (`3-snowflake/`).
+3. Try DataCamp's readiness quiz and sample practical early, as a baseline.
+4. Alongside: window functions in BigQuery (see the Advanced SQL table in `1-sql/EXAM_GUIDE.md`).
+5. Later: dbt (`2-dbt/`), then Snowflake (`3-snowflake/`).
