@@ -99,6 +99,15 @@ Newest entries at the bottom. Every chat gets an entry.
 - **BigQuery trap:** `LIMIT` doesn't cut the bytes scanned (still 4.88 MB). Only fewer columns does.
 - **Comments are sticky notes SQL ignores:** `/* ... */` for many lines, `-- ...` for one line.
 
+- **Git and GitHub basics:** **commit** = sealing a letter in an envelope (a snapshot on my laptop).
+  **Push** = taking the envelopes to the post box (sending them to GitHub). You can commit several
+  times and push once. On GitHub, the **Commits** page is the project's diary, and clicking a commit
+  shows the **diff** (green `+` = added, red `-` = removed, like track changes in Word).
+  `git log --oneline` shows the same diary in the terminal.
+- **Line endings:** Windows ends lines with CRLF, Mac/Linux with LF, like driving on different
+  sides of the road. The warning was harmless. Best practice is a `.gitattributes` file that stores
+  everything as LF, so the repo is consistent on any computer.
+
 **Quiz: 4/5**
 - ⚠️ Weak spot: **reading error clues.** I missed that `SELECT word, corpus, FROM` breaks because of
   the **extra comma after the last column**. A comma means "another column is coming", so SQL
