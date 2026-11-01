@@ -121,8 +121,46 @@ Newest entries at the bottom. Every chat gets an entry.
 
 ---
 
+## Session 3 — 1 November 2026: Lesson 6, counting and adding up (aggregates)
+
+**What we did**
+- Lesson 6 in BigQuery on the Shakespeare table: `COUNT(*)`, `AS`, `COUNT(DISTINCT)`,
+  `SELECT DISTINCT`, `SUM`, `AVG`, `ROUND`, `MIN`, `MAX`.
+- Final query: total 32,446 words in Hamlet, average 6.1 uses per word, min 1, max 995.
+- Played data detective: `COUNT(DISTINCT corpus)` said 42 "plays", but Shakespeare wrote ~37.
+  Listing the values showed 5 poems: `loverscomplaint`, `rapeoflucrece`, `sonnets`,
+  `venusandadonis` and a catch-all `various`. 42 − 5 = 37. ✔️
+
+**What I learned**
+- **Aggregates squash many rows into one answer.** Like a teacher saying "there are 28 children"
+  instead of calling every name. The result is **one row**.
+- **`COUNT(*)` processed 0 B** in BigQuery: the row count is printed on the outside of the box
+  (**metadata**, "data about the data"). Adding `WHERE` opens a drawer, so it costs bytes again.
+- **`AS` gives a column a name (an alias).** Without it, BigQuery calls it `f0_`, PostgreSQL calls it
+  `count`. The exam asks for exact column names, so always alias. Best practice: `snake_case`.
+- **`COUNT(*)` vs `COUNT(DISTINCT x)`:** a jar of 100 sweets in 5 colours → 100 vs 5.
+  "How many customers?" needs `DISTINCT`; plain `COUNT(*)` counts orders.
+- **`SELECT DISTINCT` shows which values; `COUNT(DISTINCT)` says how many.** If the count looks odd,
+  list the values. Never trust a column name, and always look inside "various/other/misc".
+- **Text sorts character by character, digits before letters**, so `1kinghenryiv` comes first,
+  and `'10'` sorts before `'9'` when numbers are stored as text.
+- **`COUNT` vs `SUM`** = number of coins vs amount of money in the piggy bank. Hamlet: 5,318 different
+  words (`COUNT`), 32,446 words in total (`SUM`).
+- **`AVG` = `SUM` ÷ `COUNT`.** I predicted 6.1 before running it. ✔️
+- **`ROUND(AVG(x), 2)` is a box inside a box:** the inner function runs first. BigQuery shows `6.1`,
+  PostgreSQL shows `6.10`. Same value. ⚠️ In PostgreSQL, `round(x, 2)` needs a `numeric` value.
+- **`MIN` / `MAX`** = shortest and tallest kid, no lining up needed.
+- **Skew preview:** average 6.1 but max 995. A few giant words pull the average up, like one very tall kid.
+- Several aggregates fit in one query, one column per line. Fewer trips to the shop.
+
+**Quiz (Lesson 6): 4.5/5**
+- ⚠️ Weak spot: **answer every part of the question.** Q2 asked for the value *and* the number of rows.
+  I gave 995 but not "1 row". The all-or-nothing practical punishes skipped parts.
+
+---
+
 ## Coming up next
-0. **Lesson 6: counting and adding up** (`COUNT`, `SUM`, `AVG`, `MIN`, `MAX`). Then `GROUP BY`,
+0. **Lesson 7: `GROUP BY`**: one answer *per play* instead of one answer for everything. Then
    `HAVING` and joins, one at a time.
 1. HackerRank **SQL (Basic)**: a free, quick first certificate, once the basics above are done.
 2. Start DataCamp Premium and the **SQL Fundamentals** track (26 hours). Pick a target month

@@ -58,7 +58,7 @@ Wording copied from the support article.
 
 | Competency | Read | Built | Explain |
 |---|---|---|---|
-| Aggregate numeric and categorical variables and dates by groups using PostgreSQL | [ ] | [ ] | [ ] |
+| Aggregate numeric and categorical variables and dates by groups using PostgreSQL | [x] | [ ] | [ ] |
 | Interpret a database schema and combine multiple tables by rows or columns using PostgreSQL | [ ] | [ ] | [ ] |
 | Extract data based on different conditions using PostgreSQL | [x] | [x] | [ ] |
 | Use subqueries to reference a second table (e.g. a different table, an aggregated table) within a query in PostgreSQL | [ ] | [ ] | [ ] |
@@ -92,7 +92,7 @@ Wording copied from the support article.
 
 | Competency | Read | Built | Explain |
 |---|---|---|---|
-| Calculate measures of center (e.g. mean, median, mode) for variables using PostgreSQL | [ ] | [ ] | [ ] |
+| Calculate measures of center (e.g. mean, median, mode) for variables using PostgreSQL | [x] | [ ] | [ ] |
 | Calculate measures of spread (e.g. range, standard deviation, variance) for variables using PostgreSQL | [ ] | [ ] | [ ] |
 | Calculate skewness for variables using PostgreSQL | [ ] | [ ] | [ ] |
 | Calculate missingness for variables and explain its influence on reporting characteristics of data and relationships in PostgreSQL | [ ] | [ ] | [ ] |
@@ -108,6 +108,8 @@ Same ideas, different spelling. Check each one against the PostgreSQL docs when 
 | Convert type | `x::integer` or `cast(x as integer)` | `cast(x as int64)` / `safe_cast(...)` |
 | Pattern match | `like`, `ilike` (case-insensitive), `~` (regex) | `like`, `regexp_contains(...)` |
 | Skewness | no built-in; build it from `avg` and `stddev` | same, no built-in |
+| Round to 2 places | `round(x, 2)` needs `x` to be `numeric`; cast doubles first (`round(x::numeric, 2)`) | `round(x, 2)` works on any number |
+| Name of an unnamed column | `count`, `avg`, ... (the function name) | `f0_`, `f1_`, ... (always alias with `as`) |
 
 ---
 
